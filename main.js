@@ -1,3 +1,5 @@
+import WaveSurfer from 'https://cdn.jsdelivr.net/npm/wavesurfer.js@7/dist/wavesurfer.esm.js'
+
 const mic_btn = document.querySelector('#mic')
 const playback = document.querySelector('.playback')
 
@@ -56,3 +58,31 @@ function ToggleMic() {
     mic_btn.classList.remove('is-recording')
   }
 }
+
+var playBtn = document.getElementById('playBtn')
+
+const wavesurfer = WaveSurfer.create({
+  container: '#waveform',
+  waveColor: 'crimson',
+  progressColor: '#383351',
+  barWidth: 4,
+  responsive: true,
+  height: 90,
+  barRadius: 4
+})
+
+wavesurfer.load('/media/Double Violin Concerto 1st Movement - J.S. Bach.mp3')
+
+playBtn.onclick = function() {
+    wavesurfer.playPause()
+    if(playBtn.src.includes("play_circle_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg")){
+        playBtn.src = "media/pause_circle_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg"
+    } else {
+        playBtn.src = "media/play_circle_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg"
+    }
+}
+
+    wavesurfer.on('finish', function() {
+        playBtn.src = "media/play_circle_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg"
+        wavesurfer.stop()
+    })
