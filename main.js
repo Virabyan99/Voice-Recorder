@@ -71,7 +71,7 @@ const wavesurfer = WaveSurfer.create({
   barRadius: 4
 })
 
-wavesurfer.load('/media/Double Violin Concerto 1st Movement - J.S. Bach.mp3')
+wavesurfer.load('/media/nadezhda-babkina-kalinka.mp3')
 
 playBtn.onclick = function() {
     wavesurfer.playPause()
